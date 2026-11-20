@@ -41,24 +41,25 @@ def main():
     sub = parser.add_subparsers(dest="command")
     sub.required = True
     
-    p_setup = sub.add_parser("setup")
-    p_setup.add_argument("-i", help="host IP")
-    p_setup.add_argument("--FQDN", help="Fully Qualified Domain Name")
+    p_setup = sub.add_parser("setup", help="Set up enviroment")
+    setup_mode = p_setup.add_subparsers(dest="mode", required=True)
     
+    # local setup
+    p_setup_local = setup_mode.add_parser("local", help="Set up locally")
+    p_setup_local.add_argument("-i", "--ip", help="IP address", required=True)
+    p_setup_local.add_argument("-d", "--fqdn", help="Fully Qualified Domain Name", required=True)
+    p_setup_local.set_defaults(func=setup_local)
     
+    # remote setup
+    p_setup_remote = setup_mode.add_parser("remote", help="Set up remote")
+    p_setup_remote.add_argument("-i", "--ip", help="IP address", required=True)
+    p_setup_remote.set_defaults(func=setup_remote)
     
-    p_clean = sub.add_parser("cleanup")
-    
-    
-    
+    p_clean = sub.add_parser("cleanup", help="clean up settings")
+    p_clean.set_defaults(func=cleanSetting)
         
     args = parser.parse_args()
-    
-    # body
-    
-    debugMsg("success", "this is success")
-    debugMsg("error", "this is error")
-    debugMsg("warning", "this is warning")
+    args.func(args)
     
     
     
