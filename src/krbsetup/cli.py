@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 import argparse
-from utils import debugMsg
+from krbsetup.setup import setup_local, setup_remote
 
 # /etc/hosts 編集
 # /etc/krb5.conf編集
@@ -57,7 +57,7 @@ def main():
     
     p_clean = sub.add_parser("cleanup", help="clean up settings")
     p_clean.set_defaults(func=cleanSetting)
-        
+    
     args = parser.parse_args()
     args.func(args)
     
