@@ -1,0 +1,2 @@
+shell_rc = "~/.zshrc"
+krb5_dir = "./krbsetup"
