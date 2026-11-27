@@ -5,6 +5,8 @@
 
 When working with Active Directory environments, such as during penetration tests, CTFs, or lab validation, you often need to edit `/etc/hosts`, write `/etc/krb5.conf`, and export environment variables before Kerberos authentication will work. krbsetup takes care of these steps for you so that you can get started quickly and consistently.
 
+⚠️ This project is currently under active development.
+
 
 ```
 kali% krbsetup -h
